@@ -1,5 +1,6 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    $id = $_POST['id'];
     $title = $_POST['title'];
     $description = $_POST['description'];
 
@@ -13,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $controller = new controller($conn);
 
     try {
-        $errors = [];
+         $errors = [];
 
         if ($controller->is_empty_inputs($title, $description)) {
             $errors[] = "Please fill in all fields.";
@@ -34,17 +35,17 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         if ($errors) {
             session_start();
             $_SESSION['errors'] = $errors;
-            header('Location: ../add.php?errors');
+            header('Location: ../edit.php?errors');
             exit;
         }
 
-        $controller->insert($title, $description);
+        $controller->update($id, $title, $description);
         
     } catch (PDOException $e) {
         die('Query Failed : ' . $e->getMessage());
     }
 } else {
-    header('Location: ../add.php');
+    header("Location: ../edit.php");
     exit;
 }
 ?>

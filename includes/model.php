@@ -36,5 +36,27 @@ class model
         header('Location: ../index.php?deleted');
         return true;
     }
+
+    public function pre_filled($id)
+    {
+        $sql = "SELECT * FROM `myList` WHERE id = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam('id', $id);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function update($id, $title, $description)
+    {
+        $sql = "UPDATE `mylist` SET title = :title, `description` = :description WHERE id = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':title', $title);
+        $stmt->bindParam(':description', $description);
+        $stmt->execute();
+        header('Location: ../index.php?updated');
+        return true;
+    }
 }
 ?>

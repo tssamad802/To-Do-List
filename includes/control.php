@@ -24,7 +24,7 @@ class controller extends model
 
     public function is_lenght_description(string $description)
     {
-        return strlen($description) >= 120;
+        return strlen($description) >= 65535;
     }
 }
 ?>
