@@ -49,12 +49,16 @@ $rows = $controller->fetch_all();
             <div class="divide-y">
                 <?php foreach ($rows as $row): ?>
                     <div class="p-4 hover:bg-gray-50 transition-colors">
-                        <div class="flex items-start gap-3">
-                            <input type="checkbox"
-                                class="mt-1 h-4 w-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500">
+                        <div class="flex items-start justify-between">
                             <div class="flex-1 min-w-0">
                                 <div class="flex items-center gap-2 mb-1">
                                     <h3 class="font-medium text-gray-900"><?php echo $row['title'] ?></h3>
+                                    <!-- Static Status Badge -->
+                                    <span class="px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-700">
+                                       <?php
+                                       echo $row['status'];
+                                       ?>
+                                    </span>
                                 </div>
                                 <p class="text-sm text-gray-600"><?php echo $row['description'] ?></p>
                             </div>

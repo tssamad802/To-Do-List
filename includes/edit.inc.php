@@ -3,6 +3,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $id = $_POST['id'];
     $title = $_POST['title'];
     $description = $_POST['description'];
+    $status = $_POST['status'];
 
     require_once 'dbh.inc.php';
     require_once 'model.php';
@@ -39,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             exit;
         }
 
-        $controller->update($id, $title, $description);
+        $controller->update($id, $title, $description, $status);
         
     } catch (PDOException $e) {
         die('Query Failed : ' . $e->getMessage());

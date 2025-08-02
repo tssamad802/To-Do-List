@@ -47,13 +47,14 @@ class model
         return $result;
     }
 
-    public function update($id, $title, $description)
+    public function update($id, $title, $description, $status)
     {
-        $sql = "UPDATE `mylist` SET title = :title, `description` = :description WHERE id = :id";
+        $sql = "UPDATE `mylist` SET title = :title, `description` = :description, `status`=:status WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':id', $id);
         $stmt->bindParam(':title', $title);
         $stmt->bindParam(':description', $description);
+        $stmt->bindParam(':status', $status);
         $stmt->execute();
         header('Location: ../index.php?updated');
         return true;

@@ -30,15 +30,26 @@ if (!empty($res)) {
         <form action="includes/edit.inc.php" method="post">
             <input type="hidden" name="id" value="<?php echo $res[0]['id']?>" />
             
+            <!-- Title -->
             <label for="title" class="block text-gray-700 mb-2 font-medium">Title</label>
             <input type="text" id="title" name="title"
                 class="w-full px-4 py-2 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Enter task title" value="<?php echo $res[0]['title']?>" />
 
+            <!-- Description -->
             <label for="description" class="block text-gray-700 mb-2 font-medium">Description</label>
             <textarea id="description" name="description" rows="4"
                 class="w-full px-4 py-2 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Enter task description"><?php echo $res[0]['description']?></textarea>
+
+            <!-- Status Dropdown -->
+            <label for="status" class="block text-gray-700 mb-2 font-medium">Status</label>
+            <select id="status" name="status"
+                class="w-full px-4 py-2 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <option value="to-do" <?php if($res[0]['status']=="to-do") echo "selected"; ?>>To-Do</option>
+                <option value="in-progress" <?php if($res[0]['status']=="in-progress") echo "selected"; ?>>In Progress</option>
+                <option value="completed" <?php if($res[0]['status']=="completed") echo "selected"; ?>>Completed</option>
+            </select>
 
             <div class="flex justify-end space-x-3">
                 <a href="./index.php">
